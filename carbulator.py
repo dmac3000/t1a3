@@ -1,9 +1,13 @@
+# Import the required libraries
+from os import system
+import math
+
 # Prints a menu with four options and returns the selected option
 def print_options():
     print("Welcome to the Carbulator! Select a menu option to continue...")
     print("1. Calculate my recommended daily carb intake")
     print("2. Track my weekly achieved carb intake")
-    print("3. See my achieved intake vs. my goal")
+    print("3. See my average achieved intake vs. my goal")
     print("4. Exit")
     opt = input("Select your option (1-3): ")
     return opt
@@ -56,3 +60,28 @@ def calc_carb_intake(weight, height, age, gender, activity_level):
   daily_carb_intake = der * 0.4 / 4
   # Return the calculated value
   return daily_carb_intake
+
+while option != "4":
+  system('cls')
+    # invoke print options and return the selected option
+  option = print_options()
+  system('cls')
+  if option == "1":
+     # Test the function by getting user input
+    weight = float(input("Enter your weight in kg: "))
+    height = float(input("Enter your height in cm: "))
+    age = int(input("Enter your age in years: "))
+    gender = input("Enter your gender (male or female): ")
+    activity_level = input("Enter your activity level - (1) Sedentary (2) Lightly active (3) Moderately active or (4) Very active: ")
+
+      # Calculate and print the daily carb intake
+    daily_carb_intake = calc_carb_intake(weight, height, age, gender, activity_level)
+    with open("daily_carb_goal.txt", "w") as f:
+      # Write the daily_carb_intake number to the file
+      f.write(str(daily_carb_intake))   
+
+    print("Your daily energy requirement is", der)
+    print("Your recommended daily carb intake is: ", daily_carb_intake, "g/day")
+    input("press Enter to continue...")
+    system('cls')
+    continue 
