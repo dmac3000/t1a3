@@ -139,6 +139,14 @@ You must include:
 
 ## References
 
+### Formula for calculating BMR + Daily Energy Requirement
+
 - Mifflin St Jeor equation: <https://reference.medscape.com/calculator/846/mifflin-st-jeor-equation>
-- Calculating carb intake from daily energy requirements:
-- Inspiration for menu, courtesy of Jairo Bilbao:
+  
+### Formula for calculating carbs from Daily Energy Requirements
+
+- <https://healthyeating.sfgate.com/recommended-amount-percent-carbohydrates-per-day-7287.html>
+
+### Menu inspired by cafe app in Jairo's Github  
+
+- <https://github.com/JairoAussie/wd-2022-std2-cafe>

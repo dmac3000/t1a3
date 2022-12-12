@@ -1,5 +1,5 @@
 # Import the required libraries
-from os import system
+from os import name, system
 import math
 
 # Prints a menu with four options and returns the selected option
@@ -12,6 +12,19 @@ def print_options():
     opt = input("Select your option (1-3): ")
     return opt
 option = ""
+
+#function for clearing screen depending on which OS the user is using
+def clear_screen():
+  # Get the current operating system
+  os_name = name
+
+  # Use the appropriate command to clear the screen
+  if os_name == 'posix':
+    system('clear')
+  elif os_name == 'nt':
+    system('cls')
+  else:
+    print('Sorry, I am not able to clear the screen on your operating system.')
 
 # Define a function to calculate carb intake
 def calc_carb_intake(weight, height, age, gender, activity_level):
@@ -62,10 +75,10 @@ def calc_carb_intake(weight, height, age, gender, activity_level):
   return daily_carb_intake
 
 while option != "4":
-  system('cls')
+  clear_screen()
     # invoke print options and return the selected option
   option = print_options()
-  system('cls')
+  clear_screen()
   if option == "1":
     # Get user input
     weight = float(input("Enter your weight in kg: "))
@@ -83,7 +96,7 @@ while option != "4":
     print("Your daily energy requirement is", der)
     print("Your recommended daily carb intake is: ", daily_carb_intake, "g/day")
     input("press Enter to continue...")
-    system('cls')
+    clear_screen()
     continue
   elif option == "2":
       # access function to track weekly intake, create new file for weekly intake.
@@ -121,7 +134,7 @@ while option != "4":
                 total_carb_intake += int(line)
         # Calculate the average carb intake for the week
         average_carb_intake = total_carb_intake / 7
-        
+
         # Compare the total carb intake to the daily carb goal
         if total_carb_intake > daily_carb_goal:
             print(f"You exceeded your daily carb goal! Your average daily carb intake for the week was {average_carb_intake:.2f}.")
@@ -132,3 +145,14 @@ while option != "4":
         # If the carb_intake.txt file is not present, catch the FileNotFoundError exception
       except FileNotFoundError:
         print("No carb data has been found. Please return to the menu and ensure both options 1 and 2 are completed.")
+
+  elif option == "4":
+      continue
+  else:
+      print("Invalid option")
+    #adds a break in the control flow until the user presses Enter    
+  input("press Enter to continue...")
+  clear_screen()
+
+# delete the results.txt file enabling the next user to start fresh
+print("Goodbye!") 
