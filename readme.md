@@ -1,16 +1,18 @@
 # David McArthur T1A3 - Terminal App Documentation
 
+<https://github.com/dmac3000/t1a3>
+
 ## R1 Answers to all the documentation requirements below
   
 ## R2 Your README.md should have a separate heading for each documentation requirement and answers organised under the appropriate headings
   
 ## R3 Provide full attribution to referenced sources (where applicable)
 
-Mifflin St Jeor equation: <https://reference.medscape.com/calculator/846/mifflin-st-jeor-equation>
+
 
 ## R4 Provide a link to your source control repository
 
-<https://github.com/dmac3000/t1a3>
+
 
 ## R5 Identify any code style guide or styling conventions that the application will adhere to. Reference the chosen style guide appropriately
 
@@ -139,3 +141,9 @@ You must include:
 - any dependencies required by the application to operate
 - any system/hardware requirements
 - how to use any command line arguments made for the application
+
+## References
+
+- Mifflin St Jeor equation: <https://reference.medscape.com/calculator/846/mifflin-st-jeor-equation>
+- Calculating carb intake from daily energy requirements:
+- Inspiration for menu, courtesy of Jairo Bilbao:
