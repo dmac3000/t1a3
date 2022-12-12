@@ -2,22 +2,22 @@
 
 ## R1 Answers to all the documentation requirements below
   
-## R2 Your README.md should have a separate heading for each documentation requirement and answers organised under the appropriate headings.
+## R2 Your README.md should have a separate heading for each documentation requirement and answers organised under the appropriate headings
   
 ## R3 Provide full attribution to referenced sources (where applicable)
 
-Formula for calculating BMR: https://www.calculator.net/bmr-calculator.html
+Mifflin St Jeor equation: <https://reference.medscape.com/calculator/846/mifflin-st-jeor-equation>
 
 ## R4 Provide a link to your source control repository
 
-## R5 Identify any code style guide or styling conventions that the application will adhere to. Reference the chosen style guide appropriately.
+<https://github.com/dmac3000/t1a3>
 
-## R6 Develop a list of features that will be included in the application. It must include
+## R5 Identify any code style guide or styling conventions that the application will adhere to. Reference the chosen style guide appropriately
 
-R6 Develop a list of features that will be included in the application. It must include
+This code will adhere to PEP8 styling.
+<https://peps.python.org/pep-0008/>
 
-- at least THREE features
-- describe each feature
+## R6 Develop a list of features that will be included in the application
 
 ### Menu
 
@@ -28,7 +28,8 @@ This menu allows the user to navigate the app with 3 menu options and an exit ap
 Feature 1 is a function that will get users input (weight, height, age, gender, activity level) and output a recommended daily carb intake via two formulas
 
 The first formula is based on the Mifflin-St Jeor Equation for calculating basal metabolic rate (BMR).
-https://reference.medscape.com/calculator/846/mifflin-st-jeor-equation
+
+<https://reference.medscape.com/calculator/846/mifflin-st-jeor-equation>
 
 ```py
 bmr = 10 * weight + 6.25 * height - 5 * age + s
@@ -52,6 +53,7 @@ The last formula takes the daily energy requirement abd runs it through a formul
 ```py
   daily_carb_intake = der * 0.4 / 4
 ```
+
 All of the above is wrapped up in a function called calc_carb_intake.
 
 Once this function is defined, the program asks the user for their input, calls the function to crunch the formulas, then returns the data in the variable "daily_carb_intake" and writes it to a text file "daily_carb_goal.txt" as per the following:
