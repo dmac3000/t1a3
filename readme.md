@@ -2,24 +2,14 @@
 
 <https://github.com/dmac3000/t1a3>
 
-## R1 Answers to all the documentation requirements below
-  
-## R2 Your README.md should have a separate heading for each documentation requirement and answers organised under the appropriate headings
-  
-## R3 Provide full attribution to referenced sources (where applicable)
+## Description
 
+- Add description here
 
-
-## R4 Provide a link to your source control repository
-
-
-
-## R5 Identify any code style guide or styling conventions that the application will adhere to. Reference the chosen style guide appropriately
-
-This code will adhere to PEP8 styling.
+This code adheres to PEP8 styling.
 <https://peps.python.org/pep-0008/>
 
-## R6 Develop a list of features that will be included in the application
+## Features
 
 ### Menu
 
@@ -122,16 +112,21 @@ Note: Ensure that your features above allow you to demonstrate your understandin
 - use of variables and the concept of variable scope
 - loops and conditional control structures
 
-## R7 Develop an implementation plan which
+## Implementation Plan
 
-- outlines how each feature will be implemented and a checklist of tasks for each feature
-- prioritise the implementation of different features, or checklist items within a feature
-- provide a deadline, duration or other time indicator for each feature or checklist/checklist-item
+I used Trello to break the project up into smaller tasks so I could track my progress, as per the following screenshots:
 
-    Utilise a suitable project management platform to track this implementation plan.
+### Feature 1
 
-    Provide screenshots/images and/or a reference to an accessible project management platform used to track this implementation plan.
-    Your checklists for each feature should have at least 5 items.
+![Feature 1 Implementation](img/feature-1-checklist.png)
+
+### Feature 2
+
+![Feature 2 Implementation](img/feature-2-checklist.png)
+
+### Feature 3
+
+![Feature 3 Implementation](img/feature-3-checklist.png)
 
 ## R8 Design help documentation which includes a set of instructions which accurately describe how to use and install the application
 
