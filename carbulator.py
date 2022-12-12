@@ -1,6 +1,7 @@
 # Import the required libraries
 from os import name, system
 import math
+import random
 
 # Prints a menu with four options and returns the selected option
 def print_options():
@@ -26,21 +27,27 @@ def clear_screen():
   else:
     print('Sorry, I am not able to clear the screen on your operating system.')
 
-# Define a function to calculate carb intake
+# Generate random numbers for weight, age and height input (if user does not wish to enter their own)
+def randomiser(random_num):
+  random_num = random.randint(1,250)
+  return random_num
+
+# Function calculates carb intake
 def calc_carb_intake(weight, height, age, gender, activity_level):
   global der
   # Check if the input values are valid
-  if weight <= 0 or height <= 0 or age <= 0:
+  if weight < 0 or height < 0 or age < 0:
     # If any of the input values are not valid, raise an error
     raise ValueError("Invalid input values. Weight, height, and age must be positive numbers.")
 
-#   # Calculate the body mass index (BMI) using the formula:
-#   # BMI = weight (kg) / height^2 (m^2)
-#   bmi = weight / math.pow(height, 2)
+# Calls random number function if user inputs 0
+  if weight == 0:
+   weight = randomiser(weight)
+  if height == 0:
+    height = randomiser(height)
+  if age == 0:
+    age = random.randint(1, 130)
 
-  # Calculate the basal metabolic rate (BMR) using the formula:
-  # BMR = 10 * weight (kg) + 6.25 * height (cm) - 5 * age (years) + s
-  # where s is the value of 5 for males and -161 for females
   if gender == "male":
     s = 5
   elif gender == "female":
@@ -81,11 +88,21 @@ while option != "4":
   clear_screen()
   if option == "1":
     # Get user input
-    weight = float(input("Enter your weight in kg: "))
-    height = float(input("Enter your height in cm: "))
-    age = int(input("Enter your age in years: "))
+    weight = float(input("Enter your weight in kg (or enter 0 for random): "))
+    height = float(input("Enter your height in cm (or enter 0 for random): "))
+    age = int(input("Enter your age in years (or enter 0 for random): "))
+    
     gender = input("Enter your gender (male or female): ")
-    activity_level = input("Enter your activity level - (1) Sedentary (2) Lightly active (3) Moderately active or (4) Very active: ")
+    while gender != "male" and gender != "female":
+      gender = input("Invalid input. Please enter your gender as male or female for the purposes of this app: ")
+      if gender == "male" or gender == " female":
+        continue
+    valid_activity_levels = ["1","2","3","4"]
+    activity_level = input("Enter your activity level - (1) sedentary (2) lightly active (3) moderately active or (4) very active: ")
+    while activity_level not in valid_activity_levels:
+      activity_level = input("Invalid input. Please enter (1) for sedentary, (2) for lightly active (3) for moderately active or (4) for very active: ")
+      if activity_level in valid_activity_levels:
+        continue
 
     # Calculate and print the daily carb intake based on above user input
     daily_carb_intake = calc_carb_intake(weight, height, age, gender, activity_level)
@@ -93,8 +110,8 @@ while option != "4":
     with open("daily_carb_goal.txt", "w") as f:
       f.write(str(daily_carb_intake))   
     # Output details for user to show function has executed correctly
-    print("Your daily energy requirement is", der)
-    print("Your recommended daily carb intake is: ", daily_carb_intake, "g/day")
+    print("Your daily energy requirement is", int(der), "calories.")
+    print("Your recommended daily carb intake is: ", int(daily_carb_intake), "g/day")
     input("press Enter to continue...")
     clear_screen()
     continue
