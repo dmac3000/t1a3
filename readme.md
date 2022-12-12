@@ -12,7 +12,12 @@ Formula for calculating BMR: https://www.calculator.net/bmr-calculator.html
 
 ## R5 Identify any code style guide or styling conventions that the application will adhere to. Reference the chosen style guide appropriately.
 
-## R6 Develop a list of features that will be included in the application
+## R6 Develop a list of features that will be included in the application. It must include
+
+R6 Develop a list of features that will be included in the application. It must include
+
+- at least THREE features
+- describe each feature
 
 ### Menu
 
