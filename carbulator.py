@@ -67,21 +67,40 @@ while option != "4":
   option = print_options()
   system('cls')
   if option == "1":
-     # Test the function by getting user input
+    # Get user input
     weight = float(input("Enter your weight in kg: "))
     height = float(input("Enter your height in cm: "))
     age = int(input("Enter your age in years: "))
     gender = input("Enter your gender (male or female): ")
     activity_level = input("Enter your activity level - (1) Sedentary (2) Lightly active (3) Moderately active or (4) Very active: ")
 
-      # Calculate and print the daily carb intake
+    # Calculate and print the daily carb intake based on above user input
     daily_carb_intake = calc_carb_intake(weight, height, age, gender, activity_level)
+    # Write the daily_carb_intake number to the file, then close it 
     with open("daily_carb_goal.txt", "w") as f:
-      # Write the daily_carb_intake number to the file
       f.write(str(daily_carb_intake))   
-
+    # Output details for user to show function has executed correctly
     print("Your daily energy requirement is", der)
     print("Your recommended daily carb intake is: ", daily_carb_intake, "g/day")
     input("press Enter to continue...")
     system('cls')
-    continue 
+    continue
+  elif option == "2":
+      # access function to track weekly intake, create new file for weekly intake.
+      # def get_carb_intake():
+      # Initialize an empty list to store the carb intake for each day
+      carbs_consumed = []
+    
+        # Ask the user for their carb intake for each of the previous 7 days
+      for i in range(7):
+          # Prompt the user to enter their carb intake for a day
+        intake = input(f"Enter your carb intake for day {i+1}: ")
+        
+        # Add the intake to the list
+        carbs_consumed.append(intake)
+    
+        # Open a file in write mode
+      with open("carb_intake.txt", "w") as f:
+          # Write the carb intake for each day to the file, one day per line
+        for intake in carbs_consumed:
+          f.write(str(intake) + "\n")
