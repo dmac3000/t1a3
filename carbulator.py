@@ -133,8 +133,11 @@ while option != "4":
       for i in range(7):
           # Prompt the user to enter their carb intake for a day
         intake = input(f"Enter your carb intake for day {i+1}: ")
-        
-        # Add the intake to the list
+        # Check if input is numeric
+        while not intake.isnumeric():
+          # Prompt user to enter again if input was not numeric
+          intake = input("Please enter a valid number: ")
+          # Add the intake to the list
         carbs_consumed.append(intake)
     
         # Open a file in write mode
