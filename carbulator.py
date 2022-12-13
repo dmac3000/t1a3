@@ -2,16 +2,25 @@
 from os import name, system
 import math
 import random
+from datetime import datetime
+
+def day_react():
+  global current_day
+  current_day = datetime.now().strftime("%A")
+  return current_day
 
 # Prints a menu with four options and returns the selected option
 def print_options():
-    print("Welcome to the Carbulator! Select a menu option to continue...")
-    print("1. Calculate my recommended daily carb intake")
-    print("2. Track my weekly achieved carb intake")
-    print("3. See my average achieved intake vs. my goal")
-    print("4. Exit")
-    opt = input("Select your option (1-3): ")
-    return opt
+  if day_react() != "Monday":
+    print(f"Welcome to the Carbulator. Happy {day_react()}! Select a menu option to continue...")
+  else:
+    print(f"Welcome to the Carbulator. Hope you're surviving {day_react()}! Select a menu option to continue...")
+  print("1. Calculate my recommended daily carb intake")
+  print("2. Track my weekly achieved carb intake")
+  print("3. See my average achieved intake vs. my goal")
+  print("4. Exit")
+  opt = input("Select your option (1-3): ")
+  return opt
 option = ""
 
 #function for clearing screen depending on which OS the user is using
@@ -117,7 +126,6 @@ while option != "4":
     continue
   elif option == "2":
       # access function to track weekly intake, create new file for weekly intake.
-      # def get_carb_intake():
       # Initialize an empty list to store the carb intake for each day
       carbs_consumed = []
     
