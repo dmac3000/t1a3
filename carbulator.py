@@ -12,7 +12,7 @@ def day_react():
 # Prints a menu with four options and returns the selected option
 def print_options():
   if day_react() != "Monday":
-    print(f"Welcome to the Carbulator. Happy {day_react()}! Select a menu option to continue...")
+    print(f"Welcome to the Carbulator. Happy {day_react()}! Select a menu option and press Enter to continue...")
   else:
     print(f"Welcome to the Carbulator. Hope you're surviving {day_react()}! Select a menu option to continue...")
   print("1. Calculate my recommended daily carb intake")
@@ -22,6 +22,19 @@ def print_options():
   opt = input("Select your option (1-3): ")
   return opt
 option = ""
+
+def validate_inputs(checknum):
+  while checknum == '':
+    checknum = (input("Invalid input. Enter a positive number or 0 for random: "))
+    if checknum.isnumeric:
+      continue
+    
+  # while checknum < 0:
+  #   print(f"Invalid input, you must enter a positive number or 0 for random.")
+  #   checknum = (input("Enter a positive number or 0 for random: "))
+  if checknum == 0:
+   checknum = randomiser(checknum)
+  return (checknum)
 
 #function for clearing screen depending on which OS the user is using
 def clear_screen():
@@ -44,18 +57,14 @@ def randomiser(random_num):
 # Function calculates carb intake
 def calc_carb_intake(weight, height, age, gender, activity_level):
   global der
-  # Check if the input values are valid
-  if weight < 0 or height < 0 or age < 0:
-    # If any of the input values are not valid, raise an error
-    raise ValueError("Invalid input values. Weight, height, and age must be positive numbers.")
 
 # Calls random number function if user inputs 0
-  if weight == 0:
-   weight = randomiser(weight)
-  if height == 0:
-    height = randomiser(height)
-  if age == 0:
-    age = random.randint(1, 130)
+  # if weight == 0:
+  #  weight = randomiser(weight)
+  # if height == 0:
+  #   height = randomiser(height)
+  # if age == 0:
+  #   age = random.randint(1, 130)
 
   if gender == "male":
     s = 5
@@ -97,9 +106,12 @@ while option != "4":
   clear_screen()
   if option == "1":
     # Get user input
-    weight = float(input("Enter your weight in kg (or enter 0 for random): "))
+    weight = (input("Enter your weight in kg (or enter 0 for random): "))
+    weight = validate_inputs(weight)
     height = float(input("Enter your height in cm (or enter 0 for random): "))
+    height = validate_inputs(height)
     age = int(input("Enter your age in years (or enter 0 for random): "))
+    age = validate_inputs(age)
     
     gender = input("Enter your gender (male or female): ")
     while gender != "male" and gender != "female":
