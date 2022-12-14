@@ -2,6 +2,7 @@
 from os import name, system
 import math
 import random
+import pprint as pp
 from datetime import datetime
 
 def day_react():
@@ -41,7 +42,7 @@ def clear_screen():
   else:
     print('Sorry, I am not able to clear the screen on your operating system.')
 
-# Function calculates carb intake
+# Function that calculates carb intake
 def calc_carb_intake(weight, height, age, gender, activity_level):
   global der
 
@@ -83,6 +84,7 @@ def calc_carb_intake(weight, height, age, gender, activity_level):
   # Return the calculated value
   return daily_carb_intake
 
+# Main program logic
 while option != "4":
   clear_screen()
     # invoke print options and return the selected option
@@ -142,35 +144,35 @@ while option != "4":
           # Write the carb intake for each day to the file, one day per line
         for intake in carbs_consumed:
           f.write(str(intake) + "\n")
+      pp.pprint(f" You entered: {carbs_consumed}")
   elif option == "3":
-        # access function for comparing weekly achieved vs goal.open file, compare goal on line one with sum of all 7 lines in results file. return discrepancy
-      with open("daily_carb_goal.txt", "r") as f:
-        # Read the first line of the file and convert it to a float
-        daily_carb_goal = float(f.readline())
+      # access function for comparing weekly achieved vs goal.open file, compare goal on line one with sum of all 7 lines in results file. return discrepancy
+
+      # Try to open the daily_carb_goal.txt file in read mode
       try:
-          # Open the carb_intake.txt file in read mode
-        with open("carb_intake.txt", "r") as f:
-            # Initialize a variable to store the sum of the carb intake for each day
-            total_carb_intake = 0
-            
-            # Read each line of the file (corresponding to one day's carb intake)
-            for line in f:
-                # Convert the line to an integer and add it to the total
-                total_carb_intake += int(line)
-        # Calculate the average carb intake for the week
-        average_carb_intake = total_carb_intake / 7
+          with open("daily_carb_goal.txt", "r") as f:
+              # Read the first line of the file and convert it to a float
+              daily_carb_goal = float(f.readline())
 
-        # Compare the total carb intake to the daily carb goal
-        if total_carb_intake > daily_carb_goal:
-            print(f"You exceeded your daily carb goal! Your average daily carb intake for the week was {average_carb_intake:.2f}.")
-        elif total_carb_intake < daily_carb_goal:
-            print(f"You didn't reach your daily carb goal. Your average daily carb intake for the week was {average_carb_intake:.2f}.")
-        else:
-            print(f"You reached your daily carb goal. Your average daily carb intake for the week was {average_carb_intake:.2f}.")
-        # If the carb_intake.txt file is not present, catch the FileNotFoundError exception
+          # Try to open the carb_intake.txt file in read mode
+          try:
+              with open("carb_intake.txt", "r") as f:
+                  # Initialize a variable to store the sum of the carb intake for each day
+                  total_carb_intake = 0
+
+                  # Read each line of the file (corresponding to one day's carb intake)
+                  for line in f:
+                      # Convert the line to an integer and add it to the total
+                      total_carb_intake += int(line)
+              # Calculate the average carb intake for the week
+              average_carb_intake = total_carb_intake / 7
+
+              # Compare the total carb intake to the daily carb goal
+              print(f"Your average daily carb intake for the week was {average_carb_intake:.2f}, vs your goal of {daily_carb_goal:.2f}.")
+          except FileNotFoundError:
+              print("No carb intake data has been found. Please return to the menu and ensure option 2 is completed.")
       except FileNotFoundError:
-        print("No carb data has been found. Please return to the menu and ensure both options 1 and 2 are completed.")
-
+          print("No daily carb goal data has been found. Please return to the menu and ensure option 1 is completed.")
   elif option == "4":
       continue
   else:
@@ -179,5 +181,5 @@ while option != "4":
   input("press Enter to continue...")
   clear_screen()
 
-# delete the results.txt file enabling the next user to start fresh
+# delete the results.txt file enabling the next user to start fresh???
 print("Goodbye!") 
