@@ -24,18 +24,10 @@ def print_options():
 option = ""
 
 def validate_inputs(checknum):
-  while checknum == '':
-    checknum = (input("Invalid input. Enter a positive number or 0 for random: "))
-    if checknum.isnumeric:
-      continue
+  while checknum == '' or not checknum.isnumeric() or int(checknum) <= 0:
+    checknum = input("Invalid input. Please enter a positive number: ")
+  return checknum
     
-  # while checknum < 0:
-  #   print(f"Invalid input, you must enter a positive number or 0 for random.")
-  #   checknum = (input("Enter a positive number or 0 for random: "))
-  if checknum == 0:
-   checknum = randomiser(checknum)
-  return (checknum)
-
 #function for clearing screen depending on which OS the user is using
 def clear_screen():
   # Get the current operating system
@@ -49,22 +41,14 @@ def clear_screen():
   else:
     print('Sorry, I am not able to clear the screen on your operating system.')
 
-# Generate random numbers for weight, age and height input (if user does not wish to enter their own)
-def randomiser(random_num):
-  random_num = random.randint(1,250)
-  return random_num
-
 # Function calculates carb intake
 def calc_carb_intake(weight, height, age, gender, activity_level):
   global der
 
-# Calls random number function if user inputs 0
-  # if weight == 0:
-  #  weight = randomiser(weight)
-  # if height == 0:
-  #   height = randomiser(height)
-  # if age == 0:
-  #   age = random.randint(1, 130)
+  # Convert weight, height, and age to numeric values
+  weight = int(weight)
+  height = int(height)
+  age = int(age)
 
   if gender == "male":
     s = 5
@@ -106,12 +90,13 @@ while option != "4":
   clear_screen()
   if option == "1":
     # Get user input
-    weight = (input("Enter your weight in kg (or enter 0 for random): "))
+    weight = input("Enter your weight in kilograms (kg): ")
     weight = validate_inputs(weight)
-    height = float(input("Enter your height in cm (or enter 0 for random): "))
+    height = input("Enter your height in centimetres (cm): ")
     height = validate_inputs(height)
-    age = int(input("Enter your age in years (or enter 0 for random): "))
+    age = input("Enter your age in years: ")
     age = validate_inputs(age)
+
     
     gender = input("Enter your gender (male or female): ")
     while gender != "male" and gender != "female":
