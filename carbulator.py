@@ -4,12 +4,16 @@ import math
 import random
 import pprint as pp
 from datetime import datetime
+from validate_inputs import validate_inputs
+from validate_activity_levels import validate_activity_levels
+from validate_gender import validate_gender
+from calc_carb_intake import calc_carb_intake
 
 def day_react():
   global current_day
   current_day = datetime.now().strftime("%A")
   return current_day
-
+    
 # Prints a menu with four options and returns the selected option
 def print_options():
   if day_react() != "Monday":
@@ -23,11 +27,6 @@ def print_options():
   opt = input("Select your option (1-3): ")
   return opt
 option = ""
-
-def validate_inputs(checknum):
-  while checknum == '' or not checknum.isnumeric() or int(checknum) <= 0:
-    checknum = input("Invalid input. Please enter a positive number: ")
-  return checknum
     
 #function for clearing screen depending on which OS the user is using
 def clear_screen():
@@ -46,10 +45,17 @@ def clear_screen():
 def calc_carb_intake(weight, height, age, gender, activity_level):
   global der
 
-  # Convert weight, height, and age to numeric values
   weight = int(weight)
   height = int(height)
   age = int(age)
+
+# Calls random number function if user inputs 0
+  # if weight == 0:
+  #  weight = randomiser(weight)
+  # if height == 0:
+  #   height = randomiser(height)
+  # if age == 0:
+  #   age = random.randint(1, 130)
 
   if gender == "male":
     s = 5
@@ -84,6 +90,7 @@ def calc_carb_intake(weight, height, age, gender, activity_level):
   # Return the calculated value
   return daily_carb_intake
 
+
 # Main program logic
 while option != "4":
   clear_screen()
@@ -91,29 +98,22 @@ while option != "4":
   option = print_options()
   clear_screen()
   if option == "1":
-    # Get user input
+    # Run Feature 1: Get user input
     weight = input("Enter your weight in kilograms (kg): ")
     weight = validate_inputs(weight)
     height = input("Enter your height in centimetres (cm): ")
     height = validate_inputs(height)
     age = input("Enter your age in years: ")
     age = validate_inputs(age)
-
-    
     gender = input("Enter your gender (male or female): ")
-    while gender != "male" and gender != "female":
-      gender = input("Invalid input. Please enter your gender as male or female for the purposes of this app: ")
-      if gender == "male" or gender == " female":
-        continue
-    valid_activity_levels = ["1","2","3","4"]
+    gender = validate_gender(gender)
     activity_level = input("Enter your activity level - (1) sedentary (2) lightly active (3) moderately active or (4) very active: ")
-    while activity_level not in valid_activity_levels:
-      activity_level = input("Invalid input. Please enter (1) for sedentary, (2) for lightly active (3) for moderately active or (4) for very active: ")
-      if activity_level in valid_activity_levels:
-        continue
+    activity_level = validate_activity_levels(activity_level)
 
     # Calculate and print the daily carb intake based on above user input
     daily_carb_intake = calc_carb_intake(weight, height, age, gender, activity_level)
+    # der = calc_carb_intake(der)
+    # s = calc_carb_intake(s)
     # Write the daily_carb_intake number to the file, then close it 
     with open("daily_carb_goal.txt", "w") as f:
       f.write(str(daily_carb_intake))   
