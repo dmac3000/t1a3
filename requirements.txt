@@ -1,2 +1,8 @@
-Install Python 
-Run Script
+Welcome to Carbulator!
+
+How to run this program:
+
+1. Make sure Python is installed on your device. 
+In MacOS/Linux, open a command prompt and type "which python". On Windows, type "python --version".
+If no version is present, install the latest version of Python by visiting https://www.python.org/downloads/ and clicking Download. Follow the prompts to install.
+2. Run the script "run_carbulator.sh", the app should open.

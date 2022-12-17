@@ -4,7 +4,9 @@
 
 ## Description
 
-- Add description here
+The Carbulator app is intended for those wishing to calculate their ideal carbohydrate intake per day, and compare it with their actual intake.
+
+Ideal carb intake is calculated by getting the users height, weight, age, biological gender and activity level, then calculating their BMR (Basal Metabolic Rate) which is the minimum amount their body needs to survive when doing nothing at all. We then use multiplier based on their activity level to calculate their daily recommened calorie intake. From there, we can work out their carb intake if we assume the user wants to get 40% of their calories from carbs, which is the standard figure for a weight loss goal.
 
 This code adheres to PEP8 styling.
 <https://peps.python.org/pep-0008/>
@@ -13,7 +15,7 @@ This code adheres to PEP8 styling.
 
 ### Menu
 
-This menu allows the user to navigate the app with 3 menu options and an exit app function. It also clears the screen after completing a feature.
+The menu allows the user to navigate the app with 3 menu options and an exit app function. It also clears the screen after completing a feature to keep the app tidy. Lastly, the app includes mention of the day and responds differently if it is a Monday, to add some personality to the app.
 
 ### Feature 1. Calculate recommended carb intake based on a range of inputs
 
@@ -27,7 +29,16 @@ The first formula is based on the Mifflin-St Jeor Equation for calculating basal
 bmr = 10 * weight + 6.25 * height - 5 * age + s
 ```
 
-The above formula outputs the users basal metabolic rate in calories, which is the minimum amount of calories required for a person with those characteristics to function. We then take that information and run it through another formula as a multiplier for activity level. This formula uses conditional statements to determine which formula to run based the activity level the user has input.
+The above formula outputs the users basal metabolic rate in calories, which is the minimum amount of calories required for a person with those characteristics to function. The "s" modifier makes an adjustment for biological gender.
+
+```py
+ if gender == "male":
+    s = 5
+  elif gender == "female":
+    s = -161
+```
+
+That information is run through another formula that acts as a multiplier for activity level. This formula uses conditional statements to determine which formula to run based on the activity level the user has input.
 
 ```py
   if activity_level == "1":
@@ -40,7 +51,7 @@ The above formula outputs the users basal metabolic rate in calories, which is t
     der = bmr * 1.725
 ```
 
-The last formula takes the daily energy requirement abd runs it through a formula for calculating carb intake.
+The last formula takes the daily energy requirement calculated above abd runs it through a formula for calculating carb intake.
   
 ```py
   daily_carb_intake = der * 0.4 / 4
@@ -48,34 +59,44 @@ The last formula takes the daily energy requirement abd runs it through a formul
 
 All of the above is wrapped up in a function called calc_carb_intake.
 
-Once this function is defined, the program asks the user for their input, calls the function to crunch the formulas, then returns the data in the variable "daily_carb_intake" and writes it to a text file "daily_carb_goal.txt" as per the following:
+Once this function is defined, the program asks the user for their input, validates that input against the "validate_inputs" and "validate_gender" functions to catch any errors. It then calls the calc_carb_intake function to crunch the formulas and returns the data in the variable "daily_carb_intake" and writes it to a text file "daily_carb_goal.txt" as per the following:
 
 ```py
+# Main program logic
 while option != "4":
-  system('cls')
-    # Call function print options and return the selected option
+  clear_screen()
+    # invoke print options and return the selected option
   option = print_options()
-  system('cls')
+  clear_screen()
   if option == "1":
-    # Get user input
-    weight = float(input("Enter your weight in kg: "))
-    height = float(input("Enter your height in cm: "))
-    age = int(input("Enter your age in years: "))
+    # Run Feature 1: Get user input
+    weight = input("Enter your weight in kilograms (kg): ")
+    weight = validate_inputs(weight)
+    height = input("Enter your height in centimetres (cm): ")
+    height = validate_inputs(height)
+    age = input("Enter your age in years: ")
+    age = validate_inputs(age)
     gender = input("Enter your gender (male or female): ")
-    activity_level = input("Enter your activity level - (1) Sedentary (2) Lightly active (3) Moderately active or (4) Very active: ")
+    gender = validate_gender(gender)
+    activity_level = input("Enter your activity level - (1) sedentary (2) lightly active (3) moderately active or (4) very active: ")
+    activity_level = validate_activity_levels(activity_level)
 
     # Calculate and print the daily carb intake based on above user input
     daily_carb_intake = calc_carb_intake(weight, height, age, gender, activity_level)
+    # der = calc_carb_intake(der)
+    # s = calc_carb_intake(s)
     # Write the daily_carb_intake number to the file, then close it 
     with open("daily_carb_goal.txt", "w") as f:
       f.write(str(daily_carb_intake))   
     # Output details for user to show function has executed correctly
-    print("Your daily energy requirement is", der)
-    print("Your recommended daily carb intake is: ", daily_carb_intake, "g/day")
+    print("Your daily energy requirement is", int(der), "calories.")
+    print("Your recommended daily carb intake is: ", int(daily_carb_intake), "g/day")
     input("press Enter to continue...")
-    system('cls')
+    clear_screen()
     continue
 ```
+
+Note that this code calls on another function "clear_screen" which clears the screen between menu options to keep the app tidy.
 
 ### Feature 2. Record and save actual daily carbs
 
@@ -150,3 +171,11 @@ You must include:
 ### Menu inspired by cafe app in Jairo's Github  
 
 - <https://github.com/JairoAussie/wd-2022-std2-cafe>
+
+
+How to run this program:
+
+1. Make sure Python is installed on your device. 
+In MacOS/Linux, open a command prompt and type "which python". On Windows, type "python --version".
+If no version is present, install the latest version of Python by visiting https://www.python.org/downloads/ and clicking Download. Follow the prompts to install.
+2. Run the script "run_carbulator.sh", the app should open.

@@ -1,9 +1,11 @@
 # Import the required libraries
+import time
 from os import name, system
 from datetime import datetime
 from validate_inputs import validate_inputs
 from validate_activity_levels import validate_activity_levels
 from validate_gender import validate_gender
+
 
 def day_react():
   global current_day
@@ -165,9 +167,10 @@ while option != "4":
   elif option == "4":
       continue
   else:
-      print("Invalid option")
+      print("Invalid input, please select 1, 2, 3 or 4.")
     #adds a break in the control flow until the user presses Enter.
   input("press Enter to continue...")
   clear_screen()
 
 print("Goodbye!") 
+time.sleep(5)
