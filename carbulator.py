@@ -173,4 +173,5 @@ while option != "4":
   clear_screen()
 
 print("Goodbye!") 
+#Keep app open long enough for user to read "Goodbye!" message before closing
 time.sleep(5)
