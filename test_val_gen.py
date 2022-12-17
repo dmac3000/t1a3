@@ -1,7 +1,9 @@
 from validate_gender import validate_gender
 
 def test_validate_gender():
+    #Run tests with pytest -s in order to accept input for second test case.
+    #1. Correct input should pass through function correctly
     assert validate_gender("female") == "female"
-    # assert validate_inputs("") == "Invalid input. Please enter a positive number: "
-    # assert validate_gender("-10") == "Invalid input. Please enter your gender as male or female for the purposes of this app:"
-    # assert validate_inputs("hello") == "Invalid input. Please enter a positive number: "
+    #2. If user inputs nothing instead of male or female, app should prompt for correct input
+    assert validate_gender("") == "male" or "female"
+    

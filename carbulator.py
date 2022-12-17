@@ -1,39 +1,35 @@
 # Import the required libraries
 from os import name, system
-import math
-import random
-import pprint as pp
 from datetime import datetime
 from validate_inputs import validate_inputs
 from validate_activity_levels import validate_activity_levels
 from validate_gender import validate_gender
-from calc_carb_intake import calc_carb_intake
 
 def day_react():
   global current_day
   current_day = datetime.now().strftime("%A")
   return current_day
-    
+
 # Prints a menu with four options and returns the selected option
 def print_options():
   if day_react() != "Monday":
     print(f"Welcome to the Carbulator. Happy {day_react()}! Select a menu option and press Enter to continue...")
   else:
     print(f"Welcome to the Carbulator. Hope you're surviving {day_react()}! Select a menu option to continue...")
-  print("1. Calculate my recommended daily carb intake")
-  print("2. Track my weekly achieved carb intake")
-  print("3. See my average achieved intake vs. my goal")
-  print("4. Exit")
+    print("1. Calculate my recommended daily carb intake")
+    print("2. Track my weekly achieved carb intake")
+    print("3. See my average achieved intake vs. my goal")
+    print("4. Exit")
   opt = input("Select your option (1-3): ")
   return opt
 option = ""
-    
+
 #function for clearing screen depending on which OS the user is using
 def clear_screen():
   # Get the current operating system
   os_name = name
 
-  # Use the appropriate command to clear the screen
+# Use the appropriate command to clear the screen
   if os_name == 'posix':
     system('clear')
   elif os_name == 'nt':
@@ -49,14 +45,6 @@ def calc_carb_intake(weight, height, age, gender, activity_level):
   height = int(height)
   age = int(age)
 
-# Calls random number function if user inputs 0
-  # if weight == 0:
-  #  weight = randomiser(weight)
-  # if height == 0:
-  #   height = randomiser(height)
-  # if age == 0:
-  #   age = random.randint(1, 130)
-
   if gender == "male":
     s = 5
   elif gender == "female":
@@ -67,10 +55,11 @@ def calc_carb_intake(weight, height, age, gender, activity_level):
 
 #  Calculate BMR using the Mifflin-St Jeor Equation:
   bmr = 10 * weight + 6.25 * height - 5 * age + s
-  
+
   # Calculate the daily energy requirement (DER) using the formula:
   # DER = BMR * activity_level
-  # where activity_level is the value of 1.2 for sedentary, 1.375 for lightly active, 1.55 for moderately active, and 1.725 for very active
+  # where activity_level is the value of 1.2 for sedentary, 1.375 for lightly active, 
+  # 1.55 for moderately active, and 1.725 for very active
 
   if activity_level == "1":
     der = bmr * 1.2
@@ -138,13 +127,13 @@ while option != "4":
           intake = input("Please enter a valid number: ")
           # Add the intake to the list
         carbs_consumed.append(intake)
-    
-        # Open a file in write mode
+        
+      # Open a file in write mode
       with open("carb_intake.txt", "w") as f:
           # Write the carb intake for each day to the file, one day per line
         for intake in carbs_consumed:
           f.write(str(intake) + "\n")
-      pp.pprint(f" You entered: {carbs_consumed}")
+      print(f" You entered: {carbs_consumed}")
   elif option == "3":
       # access function for comparing weekly achieved vs goal.open file, compare goal on line one with sum of all 7 lines in results file. return discrepancy
 
@@ -177,9 +166,8 @@ while option != "4":
       continue
   else:
       print("Invalid option")
-    #adds a break in the control flow until the user presses Enter    
+    #adds a break in the control flow until the user presses Enter.
   input("press Enter to continue...")
   clear_screen()
 
-# delete the results.txt file enabling the next user to start fresh???
 print("Goodbye!") 
