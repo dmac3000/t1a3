@@ -15,14 +15,14 @@ def day_react():
 # Prints a menu with four options and returns the selected option
 def print_options():
   if day_react() != "Monday":
-    print(f"Welcome to the Carbulator. Happy {day_react()}! Select a menu option and press Enter to continue...")
+    print(f"Welcome to the Carbulator. Happy {day_react()}! Enter a menu option to continue...")
   else:
-    print(f"Welcome to the Carbulator. Hope you're surviving {day_react()}! Select a menu option to continue...")
-    print("1. Calculate my recommended daily carb intake")
-    print("2. Track my weekly achieved carb intake")
-    print("3. See my average achieved intake vs. my goal")
-    print("4. Exit")
-  opt = input("Select your option (1-3): ")
+    print(f"Welcome to the Carbulator. Hope you're surviving {day_react()}! Enter a menu option to continue...")
+  print("1. Calculate my recommended daily carb intake")
+  print("2. Track my weekly achieved carb intake")
+  print("3. See my average achieved intake vs. my goal")
+  print("4. Exit")
+  opt = input("Select an option (1-4): ")
   return opt
 option = ""
 
@@ -37,7 +37,7 @@ def clear_screen():
   elif os_name == 'nt':
     system('cls')
   else:
-    print('Sorry, I am not able to clear the screen on your operating system.')
+    print('Unable to clear the screen on your operating system.')
 
 # Function that calculates carb intake
 def calc_carb_intake(weight, height, age, gender, activity_level):
@@ -114,16 +114,14 @@ while option != "4":
     input("press Enter to continue...")
     clear_screen()
     continue
+  
   elif option == "2":
-      # access function to track weekly intake, create new file for weekly intake.
-      # Initialize an empty list to store the carb intake for each day
+      # Get user input to track weekly intake, create new file for weekly intake.
       carbs_consumed = []
     
         # Ask the user for their carb intake for each of the previous 7 days
       for i in range(7):
-          # Prompt the user to enter their carb intake for a day
         intake = input(f"Enter your carb intake for day {i+1}: ")
-        # Check if input is numeric
         while not intake.isnumeric():
           # Prompt user to enter again if input was not numeric
           intake = input("Please enter a valid number: ")
@@ -136,10 +134,9 @@ while option != "4":
         for intake in carbs_consumed:
           f.write(str(intake) + "\n")
       print(f" You entered: {carbs_consumed}")
+      
   elif option == "3":
-      # access function for comparing weekly achieved vs goal.open file, compare goal on line one with sum of all 7 lines in results file. return discrepancy
-
-      # Try to open the daily_carb_goal.txt file in read mode
+     # Try to open the daily_carb_goal.txt file in read mode
       try:
           with open("daily_carb_goal.txt", "r") as f:
               # Read the first line of the file and convert it to a float
@@ -164,6 +161,7 @@ while option != "4":
               print("No carb intake data has been found. Please return to the menu and ensure option 2 is completed.")
       except FileNotFoundError:
           print("No daily carb goal data has been found. Please return to the menu and ensure option 1 is completed.")
+          
   elif option == "4":
       continue
   else:

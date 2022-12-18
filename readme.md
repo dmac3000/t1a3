@@ -1,5 +1,10 @@
 # David McArthur T1A3 - Terminal App Documentation
 
+Video Presentation*:
+<https://www.loom.com/share/fc0a0f92601442e5b346886aaffc41e4>
+
+* Please accept my apologies for the wiggly cursor and the fast talking, I was nervous and trying to keep it under 10 mins.
+
 ## R1: Answers to all the documentation requirements below
 
 ## R2: Your README.md should have a separate heading for each documentation requirement and answers organised under the appropriate headings
@@ -10,15 +15,15 @@
 
 ### Formula for calculating BMR + Daily Energy Requirement
 
-- Mifflin St Jeor equation: <https://reference.medscape.com/calculator/846/mifflin-st-jeor-equation>
+Mifflin St Jeor equation: <https://reference.medscape.com/calculator/846/mifflin-st-jeor-equation>
   
 ### Formula for calculating carbs from Daily Energy Requirements
 
-- <https://healthyeating.sfgate.com/recommended-amount-percent-carbohydrates-per-day-7287.html>
+<https://healthyeating.sfgate.com/recommended-amount-percent-carbohydrates-per-day-7287.html>
 
 ### Menu inspired by cafe app in Jairo's Github
 
-- <https://github.com/JairoAussie/wd-2022-std2-cafe>
+<https://github.com/JairoAussie/wd-2022-std2-cafe>
 
 ## R4 Provide a link to your source control repository
 
@@ -152,8 +157,8 @@ This feature takes the text files from the previous two features, and compares t
 
 Note: Ensure that your features above allow you to demonstrate your understanding of the following language elements and concepts:
 
-- use of variables and the concept of variable scope
-- loops and conditional control structures
+* use of variables and the concept of variable scope
+* loops and conditional control structures
 
 ## R7 Implementation Plan
 
@@ -161,15 +166,15 @@ I used Trello to break the project up into smaller tasks so I could track my pro
 
 ### Feature 1
 
-![Feature 1 Implementation](img/feature-1-checklist.png)
+![Feature 1 Implementation](docs/feature-1-checklist.png)
 
 ### Feature 2
 
-![Feature 2 Implementation](img/feature-2-checklist.png)
+![Feature 2 Implementation](docs/feature-2-checklist.png)
 
 ### Feature 3
 
-![Feature 3 Implementation](img/feature-3-checklist.png)
+![Feature 3 Implementation](docs/feature-3-checklist.png)
 
 ## R8 Design help documentation which includes a set of instructions which accurately describe how to use and install the application
 
